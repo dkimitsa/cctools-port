@@ -324,7 +324,6 @@ fts_read(FTS *fts)
 
     name = dirent->d_name;
 
-    again2:
     rc = stat(name, &fts->stat);
     if(rc < 0) {
         fts->ftsent.fts_info = FTS_NS;
