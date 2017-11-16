@@ -41,5 +41,10 @@ libstuff_la_SOURCES =  \
 	unix_standard_mode.c  \
 	version_number.c  \
 	writeout.c \
-	coff_bytesex.c
+	coff_bytesex.c \
+	foreign/win32/flock.c \
+	foreign/win32/fts.c \
+	foreign/win32/mman.c \
+	foreign/win32/realpath.c \
+	foreign/win32/utimes.c
 
