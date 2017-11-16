@@ -18,6 +18,10 @@
 
 #define DEFFILEMODE (S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH)
 
+inline static int fchmod(int fd, mode_t mode) {
+  return 0;
+}
+
 #endif // WIN32
 
 #endif // __CCTOOLS_PORT_SYS_PARAM_H__
