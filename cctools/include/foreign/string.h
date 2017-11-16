@@ -13,7 +13,7 @@ inline static char *index(const char *s, int c) {
 }
 
 #define bcopy(src, dest, n) memcpy(dest, src, n)
-#define bcmp(s1, s2, n) memcmp(dest, src, n)
+#define bcmp(s1, s2, n) memcmp(s1, s2, n)
 #define strerror_r(errnum, buf, buflen) EINVAL
 
 #endif /* WIN32 */
