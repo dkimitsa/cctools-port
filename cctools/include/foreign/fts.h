@@ -41,11 +41,6 @@ THE SOFTWARE.
 #define FTS_MAX_DEPTH 64
 #endif
 
-#ifndef S_ISLNK
-// on windows unix links after unpack will be present just as file, no hardlink is created for them
-#define S_ISLNK(x) 0
-#endif
-
 #define FTS_LOGICAL 1
 // below is just required to allow cctools to compile, there is no hard links expected on linux
 #define FTS_PHYSICAL FTS_LOGICAL

@@ -58,6 +58,9 @@ char *find_clang()
 #include <sys/user.h>
 #endif
 
+#if (defined(_WIN32) || defined(__WIN32__)) && !defined(__CYGWIN__)
+#include <windows.h>
+#endif
 
 int _NSGetExecutablePath(char *epath, unsigned int *size)
 {
@@ -126,6 +129,12 @@ int _NSGetExecutablePath(char *epath, unsigned int *size)
         return 0;
     }
     return -1;
+#elif (defined(_WIN32) || defined(__WIN32__)) && !defined(__CYGWIN__)
+	HMODULE hModule = GetModuleHandleW(NULL);
+	WCHAR wpath[MAX_PATH];
+	GetModuleFileNameW(hModule, wpath, MAX_PATH);
+	*size = wcstombs(epath, wpath, *size);
+	return 0;
 #else
     int bufsize = *size;
     int ret_size;
