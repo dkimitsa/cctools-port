@@ -25,7 +25,9 @@
 #include <mach/mach.h> /* first to get rid of pre-comp warning */
 #include "stdio.h"
 #include <signal.h>
+#if !((defined(_WIN32) || defined(__WIN32__)) && !defined(__CYGWIN__))
 #include <sys/wait.h>
+#endif
 #include <sys/file.h>
 #include <errno.h>
 #include "stuff/errors.h"
@@ -44,6 +46,10 @@ execute(
 char **argv,
 int verbose)
 {
+#if (defined(_WIN32) || defined(__WIN32__)) && !defined(__CYGWIN__)
+	// TODO: dkimitsa, need to check if there is any problem as it is executed without fork
+    return execvp(argv[0], argv) == 0;
+#else
     char *name, **p;
     int forkpid, waitpid, termsig;
 #ifndef __OPENSTEP__
@@ -93,6 +99,7 @@ int verbose)
 #endif
 		termsig == 0);
 	}
+#endif // win32
 }
 
 /*
