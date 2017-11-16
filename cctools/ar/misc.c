@@ -87,7 +87,6 @@ int
 tmp()
 {
 	extern char *envtmp;
-	sigset_t set, oset;
 	static int first;
 	int fd;
 	char path[MAXPATHLEN];
@@ -101,13 +100,18 @@ tmp()
 		(void)sprintf(path, "%s/%s", envtmp, _NAME_ARTMP);
 	else
 		strcpy(path, _PATH_ARTMP);
-	
+
+#if !((defined(_WIN32) || defined(__WIN32__)) && !defined(__CYGWIN__))
+	sigset_t set, oset;
 	sigfillset(&set);
 	(void)sigprocmask(SIG_BLOCK, &set, &oset);
+#endif
 	if ((fd = mkstemp(path)) == -1)
 		error(tname);
-        (void)unlink(path);
+#if !((defined(_WIN32) || defined(__WIN32__)) && !defined(__CYGWIN__))
+    (void)unlink(path);
 	(void)sigprocmask(SIG_SETMASK, &oset, NULL);
+#endif
 	return (fd);
 }
 
