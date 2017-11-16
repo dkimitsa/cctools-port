@@ -14,7 +14,20 @@ inline static char *index(const char *s, int c) {
 
 #define bcopy(src, dest, n) memcpy(dest, src, n)
 #define bcmp(s1, s2, n) memcmp(s1, s2, n)
+#define bzero(s, n) memset(s, 0, n)
 #define strerror_r(errnum, buf, buflen) EINVAL
+
+inline static int ffs (register int valu) {
+  register int bit;
+
+  if (valu == 0)
+    return 0;
+
+  for (bit = 1; !(valu & 1); bit++)
+  	valu >>= 1;
+
+  return bit;
+}
 
 #endif /* WIN32 */
 #endif /* __CCTOOLS_PORT_PWD_H__ */
