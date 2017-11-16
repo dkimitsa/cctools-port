@@ -1,0 +1,1 @@
+#include_next <signal.h>#ifndef SIGPIPE#define SIGPIPE 13#endif#ifndef SIGHUP#define SIGHUP 1#endif
