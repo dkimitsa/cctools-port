@@ -650,7 +650,7 @@ enum bool all_archs)
     struct stat stat_buf;
     uint32_t previous_errors;
     enum bool unix_standard_mode;
-    int cwd_fd;
+    char *cwd = NULL;
     char *rename_file;
 #ifndef NMEDIT
     char *p;
@@ -693,7 +693,7 @@ enum bool all_archs)
 	else{
 	    unix_standard_mode = get_unix_standard_mode();
 	    rename_file = NULL;
-	    cwd_fd = -1;
+	    cwd = NULL;
 #ifdef NMEDIT
 	    output_file = makestr(input_file, ".nmedit", NULL);
 #else /* !defined(NMEDIT) */
@@ -718,7 +718,8 @@ enum bool all_archs)
 		 * the current working directory to that path.
 		 */
 		if((p = rindex(output_file, '/')) != NULL){
-		    if((cwd_fd = open(".", O_RDONLY, 0)) == -1){
+            cwd = calloc(MAXPATHLEN, 1);
+		    if(!getcwd(cwd, MAXPATHLEN)){
 			system_error("can't open current working directory");
 			goto strip_file_return;
 		    }
@@ -765,12 +766,10 @@ enum bool all_archs)
 	     * If we changed the current working directory change back to
 	     * the previous working directory.
 	     */
-	    if(cwd_fd != -1){
-		if(fchdir(cwd_fd) == -1)
+	    if(cwd != NULL){
+		if(chdir(cwd) == -1)
 		    system_error("can't change back to previous working "
 				 "directory");
-		if(close(cwd_fd) == -1)
-		    system_error("can't close previous working directory");
 	    }
 	}
 
@@ -780,6 +779,8 @@ strip_file_return:
 	/* clean-up data structures */
 	free_archs(archs, narchs);
 	ofile_unmap(ofile);
+	if (cwd)
+		free(cwd);
 
 	errors += previous_errors;
 }
