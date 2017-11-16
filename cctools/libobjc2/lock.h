@@ -6,16 +6,6 @@
 
 #ifndef __LIBOBJC_LOCK_H_INCLUDED__
 #define __LIBOBJC_LOCK_H_INCLUDED__
-#ifdef WIN32
-#define BOOL _WINBOOL
-#	include <windows.h>
-#undef BOOL
-typedef HANDLE mutex_t;
-#	define INIT_LOCK(x) x = CreateMutex(NULL, FALSE, NULL)
-#	define LOCK(x) WaitForSingleObject(*x, INFINITE)
-#	define UNLOCK(x) ReleaseMutex(*x)
-#	define DESTROY_LOCK(x) CloseHandle(*x)
-#else
 
 #	include <pthread.h>
 
@@ -42,7 +32,6 @@ static inline void init_recursive_mutex(pthread_mutex_t *x)
 #	define LOCK(x) pthread_mutex_lock(x)
 #	define UNLOCK(x) pthread_mutex_unlock(x)
 #	define DESTROY_LOCK(x) pthread_mutex_destroy(x)
-#endif
 
 __attribute__((unused)) static void objc_release_lock(void *x)
 {
