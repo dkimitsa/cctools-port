@@ -4,6 +4,9 @@
  * work due to weird errors in libstdc++.
  */
 
+#ifndef __CCTOOLS_PORT_STDLIB_H__
+#define __CCTOOLS_PORT_STDLIB_H__
+
 #ifdef __CYGWIN__
 #pragma push_macro("__STRICT_ANSI__")
 #undef __STRICT_ANSI__
@@ -14,3 +17,16 @@
 #ifdef __CYGWIN__
 #pragma pop_macro("__STRICT_ANSI__")
 #endif /* __CYGWIN__ */
+
+#if (defined(_WIN32) || defined(__WIN32__)) && !defined(__CYGWIN__)
+#include <windows.h>
+#include <sys/param.h>
+
+inline static char *realpath(const char *path, char *resolved_path) {
+	if (!resolved_path)
+		resolved_path = malloc(MAXPATHLEN);
+	return _fullpath(resolved_path, path, MAXPATHLEN);
+}
+
+#endif /* WIN32 */
+#endif /* __CCTOOLS_PORT_STDLIB_H__ */
