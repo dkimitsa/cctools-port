@@ -51,7 +51,7 @@
  * APIs we'll call need lower/upper 32 bit pairs, keep the file size
  * like that too.
  */
-static BOOL
+static inline BOOL
 file_size (HANDLE h, DWORD * lower, DWORD * upper)
 {
   *lower = GetFileSize (h, upper);
@@ -64,7 +64,7 @@ file_size (HANDLE h, DWORD * lower, DWORD * upper)
 # endif
 
 /* Acquire a lock. */
-static BOOL
+static inline BOOL
 do_lock (HANDLE h, int non_blocking, int exclusive)
 {
   BOOL res;
@@ -89,7 +89,7 @@ do_lock (HANDLE h, int non_blocking, int exclusive)
 }
 
 /* Unlock reader or exclusive lock. */
-static BOOL
+static inline BOOL
 do_unlock (HANDLE h)
 {
   int res;
@@ -103,7 +103,7 @@ do_unlock (HANDLE h)
 }
 
 /* Now our BSD-like flock operation. */
-static int
+static inline int
 flock (int fd, int operation)
 {
   HANDLE h = (HANDLE) _get_osfhandle (fd);
