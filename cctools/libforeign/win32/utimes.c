@@ -1,6 +1,7 @@
 #if (defined(_WIN32) || defined(__WIN32__)) && !defined(__CYGWIN__)
 
 #include <windows.h>
+#include <errno.h>
 
 #define KDE_SECONDS_SINCE_1601	11644473600LL
 #define KDE_USEC_IN_SEC	1000000LL
