@@ -55,6 +55,12 @@ case $host_os in
     XCC="gcc"
     XCXX="g++"
   ;;
+  mingw32*)
+    EXTRAFLAGS="-D_GNU_SOURCE"
+    # make everything static and winsock is needed for hton
+    LDFLAGS="$LDFLAGS -lws2_32"
+    WARNINGS="-Wno-attributes -Werror=implicit-function-declaration"
+  ;;
 esac
 
 if test "x$isdarwin" = "xno"; then
@@ -339,8 +345,10 @@ AC_ARG_WITH([libtapi],
     [LIBTAPI_DIR=$with_libtapi], [LIBTAPI_DIRECTORY=no])
 
 if test "x$LIBTAPI_DIR" != "xno"; then
-  CXXFLAGS="$CXXFLAGS -isystem $LIBTAPI_DIR/include"
-  CPPFLAGS="$CPPFLAGS -isystem $LIBTAPI_DIR/include"
+  # do not use isystem here as it causes "could not determine the host path" and broken
+  # exe when cross-compiling
+  CXXFLAGS="$CXXFLAGS -I$LIBTAPI_DIR/include"
+  CPPFLAGS="$CPPFLAGS -I$LIBTAPI_DIR/include"
   test -d "$LIBTAPI_DIR/lib" && LDFLAGS="$LDFLAGS -L$LIBTAPI_DIR/lib"
   test -d "$LIBTAPI_DIR/lib64" && LDFLAGS="$LDFLAGS -L$LIBTAPI_DIR/lib64"
   test -d "$LIBTAPI_DIR/lib32" && LDFLAGS="$LDFLAGS -L$LIBTAPI_DIR/lib32"
@@ -398,6 +406,7 @@ AC_C_BIGENDIAN([AC_SUBST([ENDIAN_FLAG],[-D__BIG_ENDIAN__=1])],
 
 
 AC_CONFIG_FILES([Makefile libstuff/Makefile])
+AC_CONFIG_FILES([libforeign/Makefile])
 AC_CONFIG_FILES([ar/Makefile])
 AC_CONFIG_FILES([as/Makefile])
 AC_CONFIG_FILES([as/arm/Makefile])

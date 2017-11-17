@@ -6,6 +6,7 @@ ld_LDADD =  \
 	$(top_builddir)/ld64/src/3rd/BlocksRuntime/libBlocksRuntime.la  \
 	$(top_builddir)/ld64/src/ld/parsers/libParsers.la \
 	$(top_builddir)/ld64/src/ld/passes/libPasses.la \
+	$(top_builddir)/libforeign/libforeign.la \
 	$(UUID_LIB) \
 	$(LTO_LIB) \
 	$(XAR_LIB) \

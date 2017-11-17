@@ -24,10 +24,11 @@ bin_PROGRAMS =  \
 
 LDADD =  \
 	$(top_builddir)/libstuff/libstuff.la \
+	$(top_builddir)/libforeign/libforeign.la
 	$(DL_LIB) \
 	$(LTO_RPATH)
 
-AM_CFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/include/foreign -I$(top_srcdir)/libstuff $(WARNINGS) $(LTO_DEF) -D__DARWIN_UNIX03 $(ENDIAN_FLAG)
+AM_CFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/include/foreign -I$(top_srcdir)/libstuff $(WARNINGS) $(LTO_DEF) -D_GNU_SOURCE=1 -D__DARWIN_UNIX03 $(ENDIAN_FLAG)
 
 checksyms_SOURCES = checksyms.c
 lipo_SOURCES = lipo.c

@@ -1,7 +1,8 @@
 libexec_PROGRAMS = x86_64-as
 
 x86_64_as_LDADD =  \
-        $(top_builddir)/libstuff/libstuff.la
+        $(top_builddir)/libstuff/libstuff.la \
+        $(top_builddir)/libforeign/libforeign.la
 
 x86_64_as_CFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/include/foreign -I$(top_srcdir)/libstuff -I$(top_srcdir)/as $(WARNINGS) $(LTO_DEF) -DNeXT_MOD -DASLIBEXECDIR="\"$(ASLIBEXECDIR)/\"" -D__DARWIN_UNIX03  -DI386 -Di486 -Di586 -Di686 -DARCH64  $(ENDIAN_FLAG)
 

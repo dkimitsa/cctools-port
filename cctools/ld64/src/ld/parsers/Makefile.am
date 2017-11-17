@@ -14,6 +14,7 @@ libParsers_la_LIBADD =  \
 libParsers_la_CXXFLAGS =  \
 	-D__DARWIN_UNIX03 \
 	$(WARNINGS) \
+	-fpermissive \
 	$(LTO_DEF) \
 	$(TAPI_DEF) \
 	$(ENDIAN_FLAG) \
