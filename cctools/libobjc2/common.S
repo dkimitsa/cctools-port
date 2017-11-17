@@ -1,4 +1,4 @@
-#if defined(__WIN32__) || defined(__APPLE__)
+#if (defined(__WIN32__) && !defined(__MINGW32__)) || defined(__APPLE__)
 #define CDECL(symbol) _##symbol
 #else
 #define CDECL(symbol) symbol
