@@ -80,7 +80,7 @@
 7:
 	popl  %ebx;
 8:
-#ifndef __CYGWIN__
+#if !defined(__CYGWIN__) && !defined(__WIN32__)
 	/*
 	 * This causes an assertion failure in the GNU BFD Assembler on Cygwin
 	 * BFD (GNU Binutils) 2.25 assertion fail ./coff-i386.c:569
