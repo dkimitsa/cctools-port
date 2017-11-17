@@ -28,6 +28,10 @@ const char ldVersionString[] = "@(#)PROGRAM:ld  PROJECT:ld64-274.2\n";
 #include <sys/stat.h>
 #endif
 
+#if (defined(_WIN32) || defined(__WIN32__)) && !defined(__CYGWIN__)
+#include <windows.h>
+#endif
+
 #include "helper.h"
 
 void __assert_rtn(const char *func, const char *file, int line, const char *msg)
@@ -36,6 +40,8 @@ void __assert_rtn(const char *func, const char *file, int line, const char *msg)
     __assert(msg, file, line, func);
 #elif defined(__NetBSD__) || defined(__OpenBSD__) || defined(__CYGWIN__)
     __assert(msg, line, file);
+#elif (defined(_WIN32) || defined(__WIN32__))
+    _assert(msg, line, file);
 #else
     __assert(msg, file, line);
 #endif /* __FreeBSD__ */
@@ -108,6 +114,12 @@ int _NSGetExecutablePath(char *epath, unsigned int *size)
         return 0;
     }
     return -1;
+#elif (defined(_WIN32) || defined(__WIN32__)) && !defined(__CYGWIN__)
+    HMODULE hModule = GetModuleHandleW(NULL);
+	WCHAR wpath[MAX_PATH];
+	GetModuleFileNameW(hModule, wpath, MAX_PATH);
+	*size = wcstombs(epath, wpath, *size);
+	return 0;
 #else
     int bufsize = *size;
     int ret_size;
