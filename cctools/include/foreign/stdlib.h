@@ -20,7 +20,15 @@
 
 #if (defined(_WIN32) || defined(__WIN32__)) && !defined(__CYGWIN__)
 
-extern char *realpath(const char *path, char *resolved_path);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+char *realpath(const char *path, char *resolved_path);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* WIN32 */
 #endif /* __CCTOOLS_PORT_STDLIB_H__ */

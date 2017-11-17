@@ -17,7 +17,15 @@
 /* Can be OR'd in to one of the above.  */
 # define LOCK_NB 4 /* Don't block when locking.  */
 
-extern int flock (int fd, int operation);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int flock (int fd, int operation);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !Windows */
 

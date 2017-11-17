@@ -24,8 +24,16 @@
 
 #if (defined(_WIN32) || defined(__WIN32__)) && !defined(__CYGWIN__)
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*errno==EACCES on read-only devices */
 extern int utimes(const char *filename, const struct timeval times[2]);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // WIN32
 

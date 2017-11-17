@@ -72,10 +72,19 @@ struct _FTS {
 
 typedef struct _FTS FTS;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 FTS* fts_open(char * const *path_argv, int options,
               int (*compar)(const FTSENT **, const FTSENT **));
 int fts_close(FTS *fts);
 FTSENT * fts_read(FTS *fts);
+
+#ifdef __cplusplus
+}
+#endif
 
 #else
 #include_next <fts.h>

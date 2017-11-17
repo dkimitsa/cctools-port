@@ -21,6 +21,16 @@ static inline int chown(const char *__path, uid_t __owner, gid_t __group)
   return 0; 
 }
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+ssize_t pread(int fd, void *buf, size_t count, off_t offset);
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif /* WIN32 */
 
 #endif /* __CCTOOLS_PORT_UNISTD_H__ */
