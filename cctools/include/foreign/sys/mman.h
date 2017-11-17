@@ -48,6 +48,9 @@ typedef uint32_t OffsetType;
 extern "C" {
 #endif
 
+// legacy BSD type
+typedef void* caddr_t;
+
 void*   mmap(void *addr, size_t len, int prot, int flags, int fildes, OffsetType off);
 int     munmap(void *addr, size_t len);
 int     _mprotect(void *addr, size_t len, int prot);
