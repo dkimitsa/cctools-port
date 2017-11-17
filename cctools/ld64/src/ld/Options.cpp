@@ -32,7 +32,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
-#include <spawn.h>
+//#include <spawn.h> //ld64-port
 #include <cxxabi.h>
 #include <Availability.h>
 #ifdef TAPI_SUPPORT

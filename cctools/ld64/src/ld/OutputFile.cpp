@@ -29,7 +29,7 @@
 #include <sys/mman.h>
 #include <sys/sysctl.h>
 #include <sys/param.h>
-#include <sys/mount.h>
+//#include <sys/mount.h> // ld64-port
 #include <signal.h> // ld64-port
 #include <fcntl.h>
 #include <errno.h>
