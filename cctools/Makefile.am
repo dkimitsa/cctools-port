@@ -1,5 +1,5 @@
 if ISDARWIN
-SUBDIRS=libstuff ar as misc otool ld64
+SUBDIRS=libforeign libstuff ar as misc otool ld64
 else
 SUBDIRS=libforeign libstuff ar as misc libobjc2 otool ld64
 endif
