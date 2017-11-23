@@ -29,7 +29,9 @@
 #include <sys/mman.h>
 #include <sys/sysctl.h>
 #include <sys/param.h>
-//#include <sys/mount.h> // ld64-port
+#ifndef __MINGW32__ // ld64-port
+#include <sys/mount.h>
+#endif
 #include <signal.h> // ld64-port
 #include <fcntl.h>
 #include <errno.h>
