@@ -107,7 +107,7 @@ am__dirstamp = $(am__leading_dot)dirstamp
 am_libforeign_la_OBJECTS = win32/libforeign_la-flock.lo \
 	win32/libforeign_la-fts.lo win32/libforeign_la-mman.lo \
 	win32/libforeign_la-pread.lo win32/libforeign_la-realpath.lo \
-	win32/libforeign_la-utimes.lo
+	win32/libforeign_la-utimes.lo win32/libforeign_la-binmode.lo
 libforeign_la_OBJECTS = $(am_libforeign_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -331,7 +331,8 @@ libforeign_la_SOURCES = \
 	win32/mman.c \
 	win32/pread.c \
 	win32/realpath.c \
-	win32/utimes.c
+	win32/utimes.c \
+	win32/binmode.c
 
 all: all-am
 
@@ -386,6 +387,7 @@ win32/libforeign_la-mman.lo: win32/$(am__dirstamp)
 win32/libforeign_la-pread.lo: win32/$(am__dirstamp)
 win32/libforeign_la-realpath.lo: win32/$(am__dirstamp)
 win32/libforeign_la-utimes.lo: win32/$(am__dirstamp)
+win32/libforeign_la-binmode.lo: win32/$(am__dirstamp)
 
 libforeign.la: $(libforeign_la_OBJECTS) $(libforeign_la_DEPENDENCIES) $(EXTRA_libforeign_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(libforeign_la_LINK)  $(libforeign_la_OBJECTS) $(libforeign_la_LIBADD) $(LIBS)
@@ -424,6 +426,9 @@ win32/libforeign_la-realpath.lo: win32/realpath.c
 
 win32/libforeign_la-utimes.lo: win32/utimes.c
 	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libforeign_la_CFLAGS) $(CFLAGS) -c -o win32/libforeign_la-utimes.lo `test -f 'win32/utimes.c' || echo '$(srcdir)/'`win32/utimes.c
+
+win32/libforeign_la-binmode.lo: win32/binmode.c
+	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libforeign_la_CFLAGS) $(CFLAGS) -c -o win32/libforeign_la-binmode.lo `test -f 'win32/binmode.c' || echo '$(srcdir)/'`win32/binmode.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

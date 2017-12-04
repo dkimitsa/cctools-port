@@ -8,5 +8,6 @@ libforeign_la_SOURCES =  \
 	win32/mman.c \
 	win32/pread.c \
 	win32/realpath.c \
-	win32/utimes.c
+	win32/utimes.c \
+	win32/binmode.c
 
