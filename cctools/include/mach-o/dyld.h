@@ -250,7 +250,7 @@ extern unsigned long _dyld_present(
 
 extern unsigned long _dyld_image_count(
     void);
-#ifdef __LP64__
+#if defined(__LP64__) || defined(__WIN64__)
 extern struct mach_header_64 * _dyld_get_image_header(
     uint32_t image_index);
 #else /* !defined(__LP64__) */

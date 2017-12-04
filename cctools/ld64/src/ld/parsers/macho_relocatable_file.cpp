@@ -5483,7 +5483,7 @@ bool Literal8Section<A>::ignoreLabel(const char* label) const
 template <typename A>
 unsigned long Literal8Section<A>::contentHash(const class Atom<A>* atom, const ld::IndirectBindingTable& ind) const
 {
-#if __LP64__
+#if defined(__LP64__) || defined(__WIN64__)
 	const uint64_t* literalContent = (uint64_t*)atom->contentPointer();
 	return *literalContent;
 #else

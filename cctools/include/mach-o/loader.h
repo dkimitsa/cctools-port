@@ -313,7 +313,7 @@ struct load_command {
  */
 union lc_str {
 	uint32_t	offset;	/* offset to the string */
-#ifndef __LP64__
+#if !defined(__LP64__) && !defined(__WIN64__)
 	char		*ptr;	/* pointer to the string */
 #endif 
 };

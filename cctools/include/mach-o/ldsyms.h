@@ -54,7 +54,7 @@
 #define _MH_EXECUTE_SYM	"__mh_execute_header"
 #define MH_EXECUTE_SYM	"_mh_execute_header"
 extern const struct
-#ifdef __LP64__
+#if defined(__LP64__) || defined(__WIN64__)
 mach_header_64
 #else
 mach_header
@@ -71,7 +71,7 @@ _mh_execute_header;
 #define _MH_BUNDLE_SYM	"__mh_bundle_header"
 #define MH_BUNDLE_SYM	"_mh_bundle_header"
 extern const struct
-#ifdef __LP64__
+#if defined(__LP64__) || defined(__WIN64__)
 mach_header_64
 #else
 mach_header
@@ -88,7 +88,7 @@ _mh_bundle_header;
 #define _MH_DYLIB_SYM	"__mh_dylib_header"
 #define MH_DYLIB_SYM	"_mh_dylib_header"
 extern const struct
-#ifdef __LP64__
+#if defined(__LP64__) || defined(__WIN64__)
 mach_header_64
 #else
 mach_header
@@ -105,7 +105,7 @@ _mh_dylib_header;
 #define _MH_DYLINKER_SYM	"__mh_dylinker_header"
 #define MH_DYLINKER_SYM		"_mh_dylinker_header"
 extern const struct
-#ifdef __LP64__
+#if defined(__LP64__) || defined(__WIN64__)
 mach_header_64
 #else
 mach_header

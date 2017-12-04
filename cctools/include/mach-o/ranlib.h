@@ -58,7 +58,7 @@
 struct	ranlib {
     union {
 	uint32_t	ran_strx;	/* string table index of */
-#ifndef __LP64__
+#if !defined(__LP64__) && !defined(__WIN64__)
 	char		*ran_name;	/* symbol defined by */
 #endif
     } ran_un;

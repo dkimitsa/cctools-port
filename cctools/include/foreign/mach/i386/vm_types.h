@@ -97,7 +97,7 @@ typedef int			integer_t;
  * A vm_offset_t is a type-neutral pointer,
  * e.g. an offset into a virtual memory space.
  */
-#ifdef __LP64__
+#if defined(__LP64__) || defined(__WIN64__)
 typedef uintptr_t		vm_offset_t;
 #else	/* __LP64__ */
 typedef	natural_t		vm_offset_t;
@@ -108,7 +108,7 @@ typedef	natural_t		vm_offset_t;
  * expressing the difference between two
  * vm_offset_t entities.
  */
-#ifdef __LP64__
+#if defined(__LP64__) || defined(__WIN64__)
 typedef uintptr_t		vm_size_t;
 #else	/* __LP64__ */
 typedef	natural_t		vm_size_t;

@@ -403,7 +403,7 @@ void *cookie)
 	     */
 	    if(all_archs == FALSE){
 		(void)get_arch_from_host(&host_arch_flag, &specific_arch_flag);
-#if __LP64__
+#if defined(__LP64__) || defined(__WIN64__)
 		/*
 		 * If runing as a 64-bit binary and on an Intel x86 host
 		 * default to 64-bit.

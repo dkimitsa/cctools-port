@@ -108,7 +108,7 @@ typedef	unsigned long long	u_int64_t;
 typedef unsigned long       u_int64_t;
 #endif /* ! __NetBSD__ && !__OpenBSD__ && !__DragonFly__ */
 
-#if __LP64__
+#if defined(__LP64__) || defined(__WIN64__)
 typedef int64_t			register_t;
 #else
 typedef int32_t			register_t;

@@ -94,7 +94,7 @@ class LocalAddressSpace
 {
 public:
 	
-	#if __LP64__
+	#if defined(__LP64__) || defined(__WIN64__)
 		typedef uint64_t	pint_t;
 		typedef  int64_t	sint_t;
 	#else
@@ -121,7 +121,7 @@ LocalAddressSpace sThisAddress;
 
 inline uintptr_t LocalAddressSpace::getP(pint_t addr)
 {
-#if __LP64__
+#if defined(__LP64__) || defined(__WIN64__)
 	return get64(addr);
 #else
 	return get32(addr);

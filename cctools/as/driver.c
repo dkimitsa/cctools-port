@@ -199,7 +199,7 @@ char **envp)
 	 */
 	if(arch_name == NULL){
 	    if(get_arch_from_host(&arch_flag, NULL)){
-#if __LP64__
+#if defined(__LP64__) || defined(__WIN64__)
 		/*
 		 * If runing as a 64-bit binary and on an Intel x86 host
 		 * default to the 64-bit assember.

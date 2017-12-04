@@ -75,7 +75,7 @@
  */
 struct nlist {
 	union {
-#ifndef __LP64__
+#if !defined(__LP64__) && !defined(__WIN64__)
 		char *n_name;	/* for use when in-core */
 #endif
 		uint32_t n_strx;	/* index into the string table */

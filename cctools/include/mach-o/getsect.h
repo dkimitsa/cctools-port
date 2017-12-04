@@ -50,7 +50,7 @@ extern unsigned long get_end(void);
 extern unsigned long get_etext(void);
 extern unsigned long get_edata(void);
 
-#ifndef __LP64__
+#if !defined(__LP64__) && !defined(__WIN64__)
 /*
  * Runtime interfaces for 32-bit Mach-O programs.
  */

@@ -123,7 +123,7 @@ _STRUCT_MCONTEXT_AVX64
 #undef __need_mcontext_t
 #ifndef _MCONTEXT_T
 #define _MCONTEXT_T
-#if defined(__LP64__)
+#if defined(__LP64__) || defined(__WIN64__)
 typedef _STRUCT_MCONTEXT64	*mcontext_t;
 #define _STRUCT_MCONTEXT _STRUCT_MCONTEXT64
 #else

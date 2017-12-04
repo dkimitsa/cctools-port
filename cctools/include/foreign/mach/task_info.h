@@ -141,7 +141,7 @@ typedef struct task_basic_info          task_basic_info_data_t;
 typedef struct task_basic_info          *task_basic_info_t;
 #define TASK_BASIC_INFO_COUNT   \
                 (sizeof(task_basic_info_data_t) / sizeof(natural_t))
-#if !defined(__LP64__)
+#if !defined(__LP64__) && !defined(__WIN64__)
 #define TASK_BASIC_INFO TASK_BASIC_INFO_32
 #else
 #define TASK_BASIC_INFO TASK_BASIC_INFO_64

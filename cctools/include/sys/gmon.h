@@ -58,7 +58,7 @@ struct gmonhdr_64 {
 };
 
 typedef struct
-#ifndef __LP64__
+#if !defined(__LP64__) && !defined(__WIN64__)
         gmonhdr
 #else
         gmonhdr_64
@@ -127,7 +127,7 @@ struct tostruct_64 {
 };
 
 typedef struct
-#ifndef __LP64__
+#if !defined(__LP64__) && !defined(__WIN64__)
         tostruct
 #else
         tostruct_64
@@ -151,7 +151,7 @@ struct rawarc_64 {
 };
 
 typedef struct
-#ifndef __LP64__
+#if !defined(__LP64__) && !defined(__WIN64__)
         rawarc
 #else
         rawarc_64
@@ -243,7 +243,7 @@ struct rawarc_order {
 };
 
 typedef struct
-#ifndef __LP64__
+#if !defined(__LP64__) && !defined(__WIN64__)
         rawarc_order
 #else
         rawarc_order_64
