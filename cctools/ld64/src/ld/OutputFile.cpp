@@ -5199,6 +5199,10 @@ const char* OutputFile::assureFullPath(const char* path)
 {
 	if ( path[0] == '/' )
 		return path;
+#ifdef __WIN32__
+	if ( path[0] != '\0' && path[1] == ':' )
+		return path;
+#endif
 	char cwdbuff[MAXPATHLEN];
 	if ( getcwd(cwdbuff, MAXPATHLEN) != NULL ) {
 		char* result;
